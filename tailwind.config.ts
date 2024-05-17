@@ -35,6 +35,7 @@ const config: Config = {
         lightWhite:"#FAFAFA",
         blackish:"#18191C",
         darktext:"#5E6670",
+        suggestion:"#474C54",
      
       },
       borderRadius: {

@@ -17,7 +17,7 @@ const Menu: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <span className="text-blue text-lg font-bold">
-            <Link href="/">
+            <Link href="/home">
               Asia <span className="text-darkBlue">Job</span>Swipe
             </Link>
           </span>
