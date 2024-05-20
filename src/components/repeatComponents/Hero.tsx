@@ -14,8 +14,9 @@ interface HeroProps {
   backgroundImage?: string; // Optional prop for background image
   titleClassName?: string; // Optional prop for custom title styles
   spanText?: string; // Optional prop for span text
-  afterSpanText?:string;
+  afterSpanText?: string;
   spanClassName?: string; // Optional prop for custom span styles
+  showSearchBar?: boolean; // New prop to control search bar visibility
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -28,6 +29,7 @@ const Hero: React.FC<HeroProps> = ({
   spanText,
   afterSpanText,
   spanClassName = 'text-blue', // Default span styles
+  showSearchBar = true, // Default value for showSearchBar prop
 }) => {
   return (
     <div className="md:max-w-4xl md:mx-auto mx-5">
@@ -59,29 +61,31 @@ const Hero: React.FC<HeroProps> = ({
             </p>
           </div>
         )}
-        <div className="max-w-4xl bg-white justify-between rounded-lg p-3 flex flex-col md:flex-row gap-5 items-center mt-8 mx-auto">
-          <div className="relative flex items-center">
-            <FiSearch size={35} className="absolute inset-y-1 text-blue left-0 pl-3 pointer-events-none" />
-            <Input
-              type="text"
-              placeholder="Job title, Keyword..."
-              className="pl-10 text-inputGrey text-lg md:border-none md:outline-none"
-            />
+        {showSearchBar && (
+          <div className="max-w-4xl bg-white justify-between rounded-lg p-3 flex flex-col md:flex-row gap-5 items-center mt-8 mx-auto">
+            <div className="relative flex items-center">
+              <FiSearch size={35} className="absolute inset-y-1 text-blue left-0 pl-3 pointer-events-none" />
+              <Input
+                type="text"
+                placeholder="Job title, Keyword..."
+                className="pl-10 text-inputGrey text-lg md:border-none md:outline-none"
+              />
+            </div>
+            <div className="md:border-l relative flex items-center">
+              <TiLocationOutline size={35} className="absolute text-blue inset-y-1 left-0 pl-3 pointer-events-none" />
+              <Input
+                type="text"
+                placeholder="Your Location"
+                className="pl-10 md:border-none text-inputGrey text-lg md:outline-none"
+              />
+            </div>
+            <Button asChild>
+              <Link className="bg-blue text-white text-sm px-4 py-3 rounded-md" href="/signin">
+                Find Jobs
+              </Link>
+            </Button>
           </div>
-          <div className="md:border-l relative flex items-center">
-            <TiLocationOutline size={35} className="absolute text-blue inset-y-1 left-0 pl-3 pointer-events-none" />
-            <Input
-              type="text"
-              placeholder="Your Location"
-              className="pl-10 md:border-none text-inputGrey text-lg md:outline-none"
-            />
-          </div>
-          <Button asChild>
-            <Link className="bg-blue text-white text-sm px-4 py-3 rounded-md" href="/signin">
-              Find Jobs
-            </Link>
-          </Button>
-        </div>
+        )}
         {showSuggestions && (
           <div className="max-w-4xl flex md:justify-start text-center mt-4">
             <p>{suggestionText}</p>

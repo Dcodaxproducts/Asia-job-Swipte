@@ -36,6 +36,16 @@ const config: Config = {
         blackish:"#18191C",
         darktext:"#5E6670",
         suggestion:"#474C54",
+        signingrey:"#8F9197",
+        signinemail:"#202430",
+        signininput:"#515B6F",
+        signininput2:"#7C8493",
+        signininput3:"#A8ADB7",
+        signininput4:"#7C8493",
+        modaltext:"#25324B",
+        greenprogress:"#56CDAD",
+
+
      
       },
       borderRadius: {

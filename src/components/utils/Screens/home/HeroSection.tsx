@@ -2,6 +2,7 @@ import Hero from '@/components/repeatComponents/Hero'
 import React from 'react'
 
 const HeroSection: React.FC = () => {
+  const isSpecialPage = false 
   return (
     <>
     <Hero
@@ -13,6 +14,8 @@ const HeroSection: React.FC = () => {
         backgroundImage="/images/net.png" // Custom background image for Page1
         titleClassName="text-3xl md:text-7xl md:pt-8 text-center font-bold text-darkGrey" // Custom title style for Page1
         spanClassName="text-blue" // Custom span style for Page1
+      
+        showSearchBar={!isSpecialPage}
       />
     </>
   )

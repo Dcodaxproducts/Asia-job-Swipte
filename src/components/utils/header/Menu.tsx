@@ -37,16 +37,16 @@ const Menu: React.FC = () => {
             <Link href="/findjobs">
               <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Find Jobs</span>
             </Link>
-            <Link href="/about">
+            <Link href="/joboffers">
               <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Job Offers</span>
             </Link>
-            <Link href="/services">
+            <Link href="/matchedjobs">
               <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Matched Jobs</span>
             </Link>
-            <Link href="/contact">
+            <Link href="/savedjobs">
               <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Saved Jobs</span>
             </Link>
-            <Link href="/contact">
+            <Link href="/browsecompanies">
               <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Browse Companies</span>
             </Link>
           </div>

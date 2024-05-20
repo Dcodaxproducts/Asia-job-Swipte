@@ -1,19 +1,19 @@
 import React from 'react'
 import HeroComponent from '@/components/repeatComponents/Hero'
-
 const HeroSection: React.FC = () => {
-  const isSpecialPage = false // Set this to true if you want to exclude the search bar section
-
+  const isSpecialPage = false 
   return (
     <>
+   
       <HeroComponent
-        title="Find the best job!"
-        suggestionText="Suggestion: Designer, Programming, Digital Marketing, Video, Animation"
+        title="Your Saved jobs."
+       
+        
         titleClassName="text-3xl md:text-7xl md:pt-8 text-center font-bold text-darkGrey" // Custom title style for Page1
         spanClassName="text-blue" // Custom span style for Page1
-        showSuggestions={true}
+        showSuggestions={false}
         backgroundImage="url-to-image"
-        showSearchBar={!isSpecialPage}
+        showSearchBar={isSpecialPage}
       />
       {/* Other content for Page2 */}
     </>
