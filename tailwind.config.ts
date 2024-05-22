@@ -44,6 +44,10 @@ const config: Config = {
         signininput4:"#7C8493",
         modaltext:"#25324B",
         greenprogress:"#56CDAD",
+        switchbg:"#56CDAD1A",
+        bglite:"#F8F8FD",
+        reviewYellow:"#FFB836",
+        processingPurple:"#4640DE",
 
 
      

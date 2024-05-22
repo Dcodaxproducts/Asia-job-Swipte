@@ -1,7 +1,11 @@
 // pages/index.js
 
 import Tabs from "../../../repeatComponents/Tabs"
-import Profile from "./Profile";
+import AppliedJobs from "./applied_jobs";
+import Profile from "./profile/Profile";
+import Message from "./messages";
+import Notification from "./notifications/components/Notification";
+import Declined from "./declined_jobs";
 
 const IndexPage = () => {
   const tabs = [
@@ -11,26 +15,26 @@ const IndexPage = () => {
     },
     {
       title: 'Applied Jobs',
-      content: <div>Content of Tab 2</div>
+      content: <div><AppliedJobs/></div>
     },
     {
       title: 'Messages',
-      content: <div>Content of Tab 3</div>
+      content: <div><Message/></div>
     },
 
     {
         title: 'Notifications',
-        content: <div>Content of Tab 3</div>
+        content: <div><Notification/></div>
       },
 
       {
         title: 'Declined Jobs',
-        content: <div>Content of Tab 3</div>
+        content: <div><Declined/></div>
       },
   ];
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="md:container md:mx-auto mt-8">
      
 
       <Tabs tabs={tabs} />

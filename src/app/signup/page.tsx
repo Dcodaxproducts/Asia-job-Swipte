@@ -19,8 +19,8 @@ import Link from "next/link";
 const page = () => {
   return (
     <>
-      <div className="md:flex  ">
-        <div className="relative w-1/2 h-[100] ">
+       <div className="md:flex md:overflow-hidden h-screen  ">
+        <div className="hidden md:block relative md:w-1/2 w-full h-full ">
           {" "}
           {/* Set the desired height */}
           <Image
@@ -29,9 +29,11 @@ const page = () => {
             layout="fill"
             objectFit="cover"
             className="object-cover"
+            // width={100}
+            // height={100}
           />
         </div>
-        <div className="w-1/2 mt-16">
+        <div className="md:w-1/2 mt-16">
           <div className="flex justify-center">
             <Tabs defaultValue="jobseeker" className="w-[550px]">
               <TabsList className="  flex justify-center   w-full">

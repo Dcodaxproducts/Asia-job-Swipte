@@ -18,11 +18,13 @@ const Tabs = ({ tabs }: TabsProps) => {
   return (
     <div className="overflow-hidden">
       <div className="border-b border-gray-200">
-        <div className="flex">
+        <div className="flex overflow-x-auto whitespace-nowrap">
           {tabs.map((tab, index) => (
             <button
               key={index}
-              className={`relative text-lg px-4 py-2 text-gray-600 ${activeTab === index ? 'text-modaltext' : 'text-signininput4'}`}
+              className={`relative md:text-lg text-md px-4 py-2 ${
+                activeTab === index ? 'text-modaltext' : 'text-signininput4'
+              }`}
               onClick={() => setActiveTab(index)}
             >
               {tab.title}
