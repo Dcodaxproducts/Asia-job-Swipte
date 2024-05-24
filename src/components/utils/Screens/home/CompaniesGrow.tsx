@@ -5,27 +5,27 @@ import { IoLogoMicrosoft } from "react-icons/io5";
 
 const CompaniesGrow = () => {
   return (
-    <div className=" container py-10">
+    <div className=" mx-5 md:container py-10">
       <div className="flex justify-center md:justify-start pb-5 text-lg">
         <h1>Companies we helped grow</h1>
       </div>
-      <div className="flex flex-wrap text-newGrey justify-center">
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+      <div className="flex sm:justify-center   flex-wrap md:flex-nowrap text-newGrey ">
+        <div className="flex gap-1 items-center md:w-1/6 ">
           <SiAdobe size={30} /> Adobe
         </div>
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+        <div className="flex ml-1  gap-1 items-center md:w-1/6 ">
           <FaPaypal size={30} /> Paypal
         </div>
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+        <div className="flex ml-1 gap-1 items-center md:w-1/6 ">
           <FaSlack size={30}/> Slack
         </div>
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+        <div className="flex ml-1 gap-1 items-center md:w-1/6 ">
           <FaGoogle size={30} /> Google
         </div>
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+        <div className="flex ml-1 gap-1 items-center md:w-1/6 ">
           <FaAmazon size={30} /> Amazon
         </div>
-        <div className="flex gap-1 items-center md:w-1/6 w-1/3">
+        <div className="flex  gap-1 items-center md:w-1/6 ">
           <IoLogoMicrosoft size={30} /> Microsoft
         </div>
       </div>

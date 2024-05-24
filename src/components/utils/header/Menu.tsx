@@ -1,19 +1,27 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 
 const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const getLinkClasses = (path: string) => {
+    return pathname === path
+      ? "text-blue border-b-2 border-blue"
+      : "text-darkGrey";
+  };
+
   return (
-    <nav className=" container py-4">
-      <div className=''>
+    <nav className="container py-4">
+      <div>
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
           <span className="text-blue text-lg font-bold">
@@ -35,19 +43,19 @@ const Menu: React.FC = () => {
           {/* Desktop Menu Items */}
           <div className="hidden md:flex md:items-center">
             <Link href="/findjobs">
-              <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Find Jobs</span>
+              <span className={`text-sm px-4 py-2 block md:inline cursor-pointer ${getLinkClasses('/findjobs')}`}>Find Jobs</span>
             </Link>
             <Link href="/joboffers">
-              <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Job Offers</span>
+              <span className={`text-sm px-4 py-2 block md:inline cursor-pointer ${getLinkClasses('/joboffers')}`}>Job Offers</span>
             </Link>
             <Link href="/matchedjobs">
-              <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Matched Jobs</span>
+              <span className={`text-sm px-4 py-2 block md:inline cursor-pointer ${getLinkClasses('/matchedjobs')}`}>Matched Jobs</span>
             </Link>
             <Link href="/savedjobs">
-              <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Saved Jobs</span>
+              <span className={`text-sm px-4 py-2 block md:inline cursor-pointer ${getLinkClasses('/savedjobs')}`}>Saved Jobs</span>
             </Link>
             <Link href="/browsecompanies">
-              <span className="text-darkGrey text-sm px-4 py-2 block md:inline cursor-pointer">Browse Companies</span>
+              <span className={`text-sm px-4 py-2 block md:inline cursor-pointer ${getLinkClasses('/browsecompanies')}`}>Browse Companies</span>
             </Link>
           </div>
 
@@ -63,19 +71,19 @@ const Menu: React.FC = () => {
         {isOpen && (
           <div className="bg-white mt-4 p-4 rounded-lg shadow-lg md:hidden">
             <Link href="/findjobs">
-              <span className="text-darkGrey text-sm px-4 py-2 block cursor-pointer">Find Jobs</span>
+              <span className={`text-sm px-4 py-2 block cursor-pointer ${getLinkClasses('/findjobs')}`}>Find Jobs</span>
             </Link>
-            <Link href="/about">
-              <span className="text-darkGrey text-sm px-4 py-2 block cursor-pointer">Job Offers</span>
+            <Link href="/joboffers">
+              <span className={`text-sm px-4 py-2 block cursor-pointer ${getLinkClasses('/joboffers')}`}>Job Offers</span>
             </Link>
-            <Link href="/services">
-              <span className="text-darkGrey text-sm px-4 py-2 block cursor-pointer">Matched Jobs</span>
+            <Link href="/matchedjobs">
+              <span className={`text-sm px-4 py-2 block cursor-pointer ${getLinkClasses('/matchedjobs')}`}>Matched Jobs</span>
             </Link>
-            <Link href="/contact">
-              <span className="text-darkGrey text-sm px-4 py-2 block cursor-pointer">Saved Jobs</span>
+            <Link href="/savedjobs">
+              <span className={`text-sm px-4 py-2 block cursor-pointer ${getLinkClasses('/savedjobs')}`}>Saved Jobs</span>
             </Link>
-            <Link href="/contact">
-              <span className="text-darkGrey text-sm px-4 py-2 block cursor-pointer">Browse Companies</span>
+            <Link href="/browsecompanies">
+              <span className={`text-sm px-4 py-2 block cursor-pointer ${getLinkClasses('/browsecompanies')}`}>Browse Companies</span>
             </Link>
           </div>
         )}

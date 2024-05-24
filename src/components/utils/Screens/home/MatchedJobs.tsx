@@ -79,7 +79,7 @@ const MatchedJobs = () => {
   const displayedCategories = showAll ? categories : categories.slice(0, 8);
 
   return (
-    <div className=" container md:py-24 py-10">
+    <div className=" mx-5 md:container md:py-24 py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="md:text-4xl text-2xl text-blackish">Matched Jobs</h1>
         <button
@@ -90,7 +90,7 @@ const MatchedJobs = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 py-10 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 py-10 gap-4">
         {displayedCategories.map((category, index) => (
           <div
             key={index}
@@ -106,7 +106,7 @@ const MatchedJobs = () => {
                 Full Time
               </div>
               <div className="ml-auto">
-                <CiBookmarkMinus size={30} color="blue" />
+                <CiBookmarkMinus size={30} className="text-blue" />
               </div>
             </div>
             <div className="mb-2">

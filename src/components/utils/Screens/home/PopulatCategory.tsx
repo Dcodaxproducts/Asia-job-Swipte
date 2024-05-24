@@ -84,7 +84,7 @@ const PopulatCategory = () => {
   const displayedCategories = showAll ? categories : categories.slice(0, 8);
 
   return (
-    <div className=" container md:py-24 py-10">
+    <div className="mx-5 md:container md:py-24 py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="md:text-4xl text-2xl text-blackish">Popular category</h1>
         <button
@@ -95,7 +95,7 @@ const PopulatCategory = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 py-10 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-4 py-10 gap-4">
         {displayedCategories.map((category, index) => (
           <div key={index} className="p-4 bg-white w-full shadow-sm rounded-lg flex justify-center items-center">
             <div className="mr-4 bg-lightPink rounded-lg p-5">

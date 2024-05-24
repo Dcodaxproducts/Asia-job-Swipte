@@ -12,7 +12,7 @@ import {
 const Footer = () => {
   return (
     <div className="bg-lightPink pt-16  ">
-      <div className="container flex flex-col md:flex-row  md:justify-between">
+      <div className="md:container mx-5 flex flex-wrap justify-between   ">
         {/* Column 1: Logo and Social Media */}
         <div className="mb-8 md:mb-0 w-full md:w-2/5 ">
           <div>
@@ -48,7 +48,7 @@ const Footer = () => {
         </div>
 
         {/* Column 2: Quick Links */}
-        <div className="mb-8 md:mb-0 w-full md:w-1/5 ">
+        <div className="mb-8 md:mb-0  sm:w-1/2 md:w-1/5 ">
           <h1 className="font-bold md:text-2xl text-lg  mb-4">Quick Links</h1>
           <ul className="space-y-2 md:text-xl text-md flex flex-col gap-5 text-darkGrey">
             <li>
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         {/* Column 3: Help Links */}
-        <div className="mb-8 md:mb-0 w-full md:w-1/5 ">
+        <div className="mb-8 md:mb-0  sm:w-1/2 md:w-1/5 ">
           <h1 className="font-bold md:text-2xl text-xl  mb-4">Help Links</h1>
           <ul className="space-y-2 md:text-xl text-md flex flex-col gap-5 text-darkGrey">
             <li>
@@ -86,11 +86,11 @@ const Footer = () => {
         </div>
 
         {/* Column 4: Get Our App */}
-        <div className="mb-8  md:mb-0 w-full md:w-1/5">
+        <div className="mb-8  md:mb-0  sm:w-full md:w-1/5">
           <h1 className="font-bold md:text-2xl text-lg mb-4">
             Get Our App Now!
           </h1>
-          <div className="sm:flex md:block">
+          <div className="sm:flex sm:gap-5 md:block">
             <div className="  flex items-center my-6 mb-5 p-2 text-white rounded-lg gap-3  bg-darkGrey">
               <div>
                 <Link href="https://play.google.com/store">
@@ -125,8 +125,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container ">
-        <div className="my-10">
+      <div className="mx-5 md:container ">
+        <div className="py-5">
           <hr className=" border-darkGrey " />
         </div>
         <div className="flex pb-5 flex-col justify-center items-center">
