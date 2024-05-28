@@ -1,17 +1,18 @@
-import React, { ReactNode } from 'react';
-import { Checkbox as BaseCheckbox } from "@/components/ui/checkbox"; // Renamed import
+import React, { ReactNode, ChangeEvent } from "react";
+import { Checkbox as BaseCheckbox } from "@/components/ui/checkbox";
 
 interface CheckboxProps {
   id: string;
   children: ReactNode;
   className?: string;
-  checked?: boolean; // Add the checked prop
+  checked?: boolean;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Checkbox = ({ id, children, className, checked }: CheckboxProps) => {
+const Checkbox: React.FC<CheckboxProps> = ({ id, children, className, checked, onChange }) => {
   return (
-    <div className={`flex items-center space-x-2 mb-4 ${checked ? 'bg-blue' : ''}`}>
-      <BaseCheckbox id={id} className={className} checked={checked} /> {/* Pass the checked prop */}
+    <div className={`flex items-center space-x-2 mb-4 ${className}`}>
+      <BaseCheckbox id={id} checked={checked} onChange={onChange} />
       <label
         htmlFor={id}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

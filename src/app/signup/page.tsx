@@ -41,26 +41,16 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="md:flex h-screen">
-      <div className="relative hidden md:block md:w-1/2 w-full h-full">
-        <Image
-          src="/images/signupimage.png"
-          alt="young lady"
-          layout="fill"
-          objectFit="cover"
-          className="object-cover h-full"
-        />
+    <div className="md:flex " >
+      <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')",   }}>
+        
       </div>
-      <div className="flex flex-col justify-center md:w-1/2 py-16">
-        <div className="flex justify-center">
-          <Tabs defaultValue="jobseeker" className="w-[550px]">
-            <TabsList className="flex justify-center w-full">
-              <TabsTrigger value="jobseeker" className="w-1/3">
-                Job Seeker
-              </TabsTrigger>
-              <TabsTrigger value="employer" className="w-1/3">
-                Employer
-              </TabsTrigger>
+      <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
+        <div className="w-[550px]">
+          <Tabs defaultValue="jobseeker" className="w-full">
+            <TabsList className="flex justify-center w-full mb-4">
+              <TabsTrigger value="jobseeker" className="w-1/3">Job Seeker</TabsTrigger>
+              <TabsTrigger value="employer" className="w-1/3">Employer</TabsTrigger>
             </TabsList>
             <TabsContent value="jobseeker">
               <Card className="border-none shadow-none">
@@ -248,4 +238,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
- 

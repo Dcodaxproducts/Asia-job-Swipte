@@ -1,22 +1,23 @@
-// components/Hero.tsx
-import React from 'react';
+"use client";
+import React, { useState, useRef, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { FiSearch } from 'react-icons/fi';
 import { TiLocationOutline } from 'react-icons/ti';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import PakistanCities from './CitiesName';
 
 interface HeroProps {
   title: string;
-  subtitle?: string; // Optional prop
-  suggestionText?: string; // Optional prop
-  showSuggestions?: boolean; // Optional prop with a default value
-  backgroundImage?: string; // Optional prop for background image
-  titleClassName?: string; // Optional prop for custom title styles
-  spanText?: string; // Optional prop for span text
+  subtitle?: string;
+  suggestionText?: string;
+  showSuggestions?: boolean;
+  backgroundImage?: string;
+  titleClassName?: string;
+  spanText?: string;
   afterSpanText?: string;
-  spanClassName?: string; // Optional prop for custom span styles
-  showSearchBar?: boolean; // New prop to control search bar visibility
+  spanClassName?: string;
+  showSearchBar?: boolean;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -24,13 +25,57 @@ const Hero: React.FC<HeroProps> = ({
   subtitle,
   suggestionText = 'Suggestion: Designer, Programming, Digital Marketing, Video, Animation',
   showSuggestions = true,
-  backgroundImage, // No default value
-  titleClassName = 'text-3xl md:text-7xl md:pt-8 text-center font-bold text-darkGrey', // Default title styles
+  backgroundImage,
+  titleClassName = 'text-3xl md:text-7xl md:pt-8 text-center font-bold text-darkGrey',
   spanText,
   afterSpanText,
-  spanClassName = 'text-blue', // Default span styles
-  showSearchBar = true, // Default value for showSearchBar prop
+  spanClassName = 'text-blue',
+  showSearchBar = true,
 }) => {
+
+  const [location, setLocation] = useState('');
+  const [filteredCities, setFilteredCities] = useState<string[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newLocation = event.target.value;
+    setLocation(newLocation);
+
+    if (newLocation) {
+      const filtered = PakistanCities.filter(city =>
+        city.toLowerCase().includes(newLocation.toLowerCase()) ||
+        isFuzzyMatch(city.toLowerCase(), newLocation.toLowerCase())
+      );
+      setFilteredCities(filtered);
+    } else {
+      setFilteredCities([]);
+    }
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setFilteredCities([]);
+    }
+  };
+
+  const isFuzzyMatch = (city: string, input: string) => {
+    const inputChars = input.split('');
+    let index = 0;
+    for (const char of inputChars) {
+      index = city.indexOf(char, index);
+      if (index === -1) return false;
+      index++;
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="md:max-w-4xl md:mx-auto mx-5">
       <div className="py-8">
@@ -69,15 +114,35 @@ const Hero: React.FC<HeroProps> = ({
                 type="text"
                 placeholder="Job title, Keyword..."
                 className="pl-10 text-inputGrey text-lg md:border-none md:outline-none"
+                disableFocusStyles
               />
             </div>
-            <div className="md:border-l relative flex items-center">
+            <div className="md:border-l relative flex items-center" ref={dropdownRef}>
               <TiLocationOutline size={35} className="absolute text-blue inset-y-1 left-0 pl-3 pointer-events-none" />
               <Input
                 type="text"
                 placeholder="Your Location"
                 className="pl-10 md:border-none text-inputGrey text-lg md:outline-none"
+                value={location}
+                onChange={handleInputChange}
+                disableFocusStyles
               />
+              {filteredCities.length > 0 && (
+                <div className="absolute top-full mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto z-10">
+                  {filteredCities.map(city => (
+                    <div
+                      key={city}
+                      className="p-2 cursor-pointer hover:bg-gray-200"
+                      onClick={() => {
+                        setLocation(city);
+                        setFilteredCities([]);
+                      }}
+                    >
+                      {city}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <Button asChild>
               <Link className="bg-blue text-white text-sm px-4 py-3 rounded-md" href="/signin">

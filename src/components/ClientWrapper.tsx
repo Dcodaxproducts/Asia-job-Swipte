@@ -12,7 +12,7 @@ const ClientWrapper = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
-  const publicPaths = ['/signin', '/signup', '/home' ,'/findjobs', '/joboffers', '/matchedjobs', '/savedjobs', '/browsecompanies'];
+  const publicPaths = ['/signin', '/signup', '/home' ,'/findjobs', '/joboffers', '/matchedjobs', '/savedjobs', '/browsecompanies','/myprofile'];
   const accessibleWithoutAuth = publicPaths.includes(pathname);
 
   useEffect(() => {

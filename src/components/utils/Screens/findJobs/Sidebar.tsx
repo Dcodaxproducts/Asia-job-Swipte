@@ -1,6 +1,6 @@
 import React from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import MyCheckbox from "../../../../components/repeatComponents/Checkbox";
+import MyCheckbox from "../../../repeatComponents/Checkbox";
 import { GoSidebarCollapse } from "react-icons/go";
 import {
   Accordion,
@@ -35,7 +35,7 @@ const Sidebar = () => {
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-base ">Job Type</AccordionTrigger>
             <AccordionContent>
-              <MyCheckbox id="part-time" className="">
+              <MyCheckbox id="part-time" className="" >
                 {" "}
                 Full-time (3)
               </MyCheckbox>

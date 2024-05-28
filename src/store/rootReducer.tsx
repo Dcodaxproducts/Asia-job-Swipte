@@ -1,10 +1,12 @@
 "use client"
 import { combineReducers } from '@reduxjs/toolkit';
-import exampleReducer from './slices/exampleSlice';
+
 import authReducer from './slices/authSlice';
+import jobSlice from './slices/jobSlice';
 const rootReducer = combineReducers({
-  example: exampleReducer,
+
   auth: authReducer,
+  job:jobSlice,
 });
 
 export default rootReducer;
