@@ -1,5 +1,5 @@
-import React, { ReactNode, ChangeEvent } from "react";
-import { Checkbox as BaseCheckbox } from "@/components/ui/checkbox";
+"use client"
+import React, { ReactNode, ChangeEvent } from 'react';
 
 interface CheckboxProps {
   id: string;
@@ -10,9 +10,19 @@ interface CheckboxProps {
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({ id, children, className, checked, onChange }) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event);
+  };
+
   return (
     <div className={`flex items-center space-x-2 mb-4 ${className}`}>
-      <BaseCheckbox id={id} checked={checked} onChange={onChange} />
+      <input
+        type="checkbox"
+        id={id}
+        checked={checked}
+        onChange={handleChange}
+        className="peer"
+      />
       <label
         htmlFor={id}
         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

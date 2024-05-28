@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -148,8 +149,8 @@ const JobListings: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
                 <Dialog>
         <DialogTrigger>
           <Button
-            className="bg-blue text-white text-sm px-4 py-2 rounded-md"
-            size={"custom"}
+            className="bg-blue text-white text-sm px-8 py-2 rounded-md"
+          
           >
             Apply
           </Button>
