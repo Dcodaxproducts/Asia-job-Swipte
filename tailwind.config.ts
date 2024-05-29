@@ -44,10 +44,16 @@ const config: Config = {
         signininput4:"#7C8493",
         modaltext:"#25324B",
         greenprogress:"#56CDAD",
+        greenprogressbg:"#EEFAF7",
         switchbg:"#56CDAD1A",
         bglite:"#F8F8FD",
         reviewYellow:"#FFB836",
         processingPurple:"#4640DE",
+        hrline:"#D6DDEB",
+        yellow:"#FFB836",
+        yellowBg:"#EB85331A",
+        discordbg:"#5865F2",
+      
 
 
      
