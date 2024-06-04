@@ -8,11 +8,11 @@ import { VscMusic } from "react-icons/vsc";
 import { IoBarChartOutline } from "react-icons/io5";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { FiDatabase } from "react-icons/fi";
-
+import { PiPenNibBold } from "react-icons/pi";
 
 const categories = [
   {
-    icon: <CiPen size={30} color="blue" />,
+    icon: <PiPenNibBold  size={30} color="blue" />,
     title: "Graphics & Design",
     description: "120 open positions"
   },
@@ -87,6 +87,7 @@ const PopulatCategory = () => {
     <div className="mx-5 md:container md:py-24 py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="md:text-4xl text-2xl text-blackish">Popular category</h1>
+        <i className="fi fi-rr-home"></i>
         <button
           onClick={toggleShowAll}
           className="border text-blue text-lg px-4 py-2 rounded-md flex items-center"

@@ -3,47 +3,43 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
-import { signUp } from '../../store/slices/authSlice';
+import { registerJobSeeker, registerCompanyRole } from '../../store/slices/authSlice';
 import { Button } from "@/components/ui/button";
-import { FcGoogle } from "react-icons/fc";
-import { FaArrowLeft } from "react-icons/fa6";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { FaGoogle, FaArrowLeft } from "react-icons/fa";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Image from "next/image";
-
+import { useRouter } from 'next/navigation';
+import { FcGoogle } from "react-icons/fc";
 const SignUpPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
+  const router = useRouter();
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [otp, setOtp] = useState('');
 
   useEffect(() => {
     if (auth.user) {
-      import('next/router').then(({ useRouter }) => {
-        const router = useRouter();
-        router.push('/');
-      });
+      router.push('/');
     }
-  }, [auth.user]);
+  }, [auth.user, router]);
 
-  const handleSignUp = async () => {
-    await dispatch(signUp({ email, password, name }));
+   const handleSignUp = async (role: string) => {
+    if (role === 'jobseeker') {
+      await dispatch(registerJobSeeker({ email, password, firstName, lastName, otp }));
+    } else if (role === 'employer') {
+      await dispatch(registerCompanyRole({ email, password, firstName, lastName, role: 'company' }));
+    }
   };
 
   return (
-    <div className="md:flex " >
-      <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')",   }}>
-        
+    <div className="md:flex ">
+      <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')" }}>
       </div>
       <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
         <div className="w-[550px]">
@@ -60,7 +56,7 @@ const SignUpPage = () => {
                   </CardTitle>
                   <CardDescription>
                     <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
+                      <FcGoogle  size={25} className="mr-2" /> Sign Up with Google
                     </Button>
                   </CardDescription>
                   <CardDescription>
@@ -75,13 +71,23 @@ const SignUpPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
-                    <Label htmlFor="name" className="text-signininput text-base">Full name</Label>
+                    <Label htmlFor="firstName" className="text-signininput text-base">First Name</Label>
                     <Input
-                      id="name"
+                      id="firstName"
                       className="text-signininput3"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Enter your full name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Enter your first name"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor="lastName" className="text-signininput text-base">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      className="text-signininput3"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Enter your last name"
                     />
                   </div>
                   <div className="space-y-1">
@@ -111,7 +117,7 @@ const SignUpPage = () => {
                       variant="outline"
                       size={"lg"}
                       className="bg-blue w-full text-white"
-                      onClick={handleSignUp}
+                      onClick={() => handleSignUp('jobseeker')}
                     >
                       Continue
                     </Button>
@@ -149,7 +155,7 @@ const SignUpPage = () => {
                   </CardTitle>
                   <CardDescription>
                     <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
+                      <FcGoogle  size={25} className="mr-2" /> Sign Up with Google
                     </Button>
                   </CardDescription>
                   <CardDescription>
@@ -164,13 +170,23 @@ const SignUpPage = () => {
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
-                    <Label htmlFor="name" className="text-signininput text-base">Full name</Label>
+                    <Label htmlFor="firstName" className="text-signininput text-base">First Name</Label>
                     <Input
-                      id="name"
+                      id="firstName"
                       className="text-signininput3"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Enter your full name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Enter your first name"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label htmlFor="lastName" className="text-signininput text-base">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      className="text-signininput3"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Enter your last name"
                     />
                   </div>
                   <div className="space-y-1">
@@ -200,7 +216,7 @@ const SignUpPage = () => {
                       variant="outline"
                       size={"lg"}
                       className="bg-blue w-full text-white"
-                      onClick={handleSignUp}
+                      onClick={() => handleSignUp('employer')}
                     >
                       Continue
                     </Button>

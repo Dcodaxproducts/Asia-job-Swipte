@@ -16,7 +16,7 @@ const jobs = [
       logo: "/images/66.png",
       tags: ["Full-Time", "Marketing", "Design"]
     },
-    {
+    { 
       id: 2,
       title: "Brand Designer",
       company: "Dropbox",

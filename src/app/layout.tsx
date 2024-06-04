@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import ReduxProvider from '../components/ReduxProvider';
 import ClientWrapper from '../components/ClientWrapper';
+import SessionProviderWrapper from '../components/SessionProviderWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} style={{ fontFamily: "'SfUi', sans-serif" }}>
-        <ReduxProvider>
-          <ClientWrapper>
-            {children}
-          </ClientWrapper>
-        </ReduxProvider>
+        <SessionProviderWrapper>
+          <ReduxProvider>
+            <ClientWrapper>
+              {children}
+            </ClientWrapper>
+          </ReduxProvider>
+        </SessionProviderWrapper>
       </body>
     </html>
   );

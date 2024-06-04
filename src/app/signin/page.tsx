@@ -66,7 +66,7 @@ const SignInPage = () => {
                     <div className="flex items-center justify-center">
                       <div className="flex-grow border-t border-gray-300"></div>
                       <Button variant="link" className="mx-4 text-signinemail">
-                        Or Sign In with email
+                      <Link href="/send-otp">Or Sign In with email</Link> 
                       </Button>
                       <div className="flex-grow border-t border-gray-300"></div>
                     </div>

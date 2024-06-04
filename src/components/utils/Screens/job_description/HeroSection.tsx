@@ -142,7 +142,7 @@ const HeroSection = () => {
                           Apply
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="bg-white overflow-y-auto max-h-96 ">
+                      <DialogContent className="bg-white overflow-y-auto w-full max-h-full pb-32 mb-16 ">
                         <DialogHeader className="bg-blue px-8 py-4 rounded-lg flex justify-center text-center">
                           <DialogTitle className="text-white text-center text-3xl">
                             Review your Information
