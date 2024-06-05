@@ -30,6 +30,7 @@ const SendOTPPage: React.FC = () => {
   const [step, setStep] = useState('sendOTP'); // 'sendOTP' or 'verifyOTP'
   const [role, setRole] = useState('jobSeeker'); // 'jobSeeker' or 'company'
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // 'success' or 'error'
   const router = useRouter();
   const { data: session, status } = useSession();
 
@@ -65,8 +66,13 @@ const SendOTPPage: React.FC = () => {
     if (response.meta.requestStatus === 'fulfilled') {
       setStep('verifyOTP');
       setMessage('OTP has been sent to your email.');
+      setMessageType('success');
+    } else if (response.payload === 'User already exists with this email') {
+      setMessage('User already exists with this email.');
+      setMessageType('error');
     } else {
       setMessage('Failed to send OTP. Please try again.');
+      setMessageType('error');
     }
   };
 
@@ -78,6 +84,7 @@ const SendOTPPage: React.FC = () => {
       router.push('/signup');
     } else {
       setMessage('Failed to verify OTP. Please try again.');
+      setMessageType('error');
     }
   };
 
@@ -107,24 +114,18 @@ const SendOTPPage: React.FC = () => {
                     <Button
                       className="w-full text-darkGrey"
                       variant="outline"
-                      // onClick={() => handleGoogleSignIn('jobSeeker')}
                       onClick={() => signIn('google')}
                     >
-                      <FcGoogle size={25} className="mr-2" /> Sign In with Google
+                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
                     </Button>
-                  </CardDescription>
-                  <CardDescription>
-                    <div className="flex items-center justify-center">
-                      <div className="flex-grow border-t border-gray-300"></div>
-                      <Button variant="link" className="mx-4 text-signinemail">
-                        Or {step === 'sendOTP' ? 'send OTP via email' : 'verify OTP'}
-                      </Button>
-                      <div className="flex-grow border-t border-gray-300"></div>
-                    </div>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5">
-                  {message && <p className="text-green-500">{message}</p>}
+                  {message && (
+                    <p className={messageType === 'success' ? 'text-green-500' : 'text-red-500'}>
+                      {message}
+                    </p>
+                  )}
                   {step === 'sendOTP' ? (
                     <div className="space-y-1">
                       <Label htmlFor="email" className="text-signininput text-base">Email Address</Label>
@@ -162,9 +163,9 @@ const SendOTPPage: React.FC = () => {
                   </div>
                   {auth.otpError && <p className="text-red-500">{auth.otpError}</p>}
                   <div className="flex items-center">
-                    <h1 className="text-signinemail text-base">Don’t have an account?</h1>
+                    <h1 className="text-signinemail text-base">Already have an account?</h1>
                     <Button asChild variant="link" className="text-blue">
-                      <Link href="/signup">Sign Up</Link>
+                      <Link href="/signin">Sign In</Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -187,24 +188,18 @@ const SendOTPPage: React.FC = () => {
                     <Button
                       className="w-full text-darkGrey"
                       variant="outline"
-                      // onClick={() => handleGoogleSignIn('company')}
                       onClick={() => signIn('google')}
                     >
-                      <FcGoogle size={25} className="mr-2" /> Sign In with Google
+                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
                     </Button>
-                  </CardDescription>
-                  <CardDescription>
-                    <div className="flex items-center justify-center">
-                      <div className="flex-grow border-t border-gray-300"></div>
-                      <Button variant="link" className="mx-4 text-signinemail">
-                        Or {step === 'sendOTP' ? 'send OTP via email' : 'verify OTP'}
-                      </Button>
-                      <div className="flex-grow border-t border-gray-300"></div>
-                    </div>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-5">
-                  {message && <p className="text-green-500">{message}</p>}
+                  {message && (
+                    <p className={messageType === 'success' ? 'text-green-500' : 'text-red-500'}>
+                      {message}
+                    </p>
+                  )}
                   {step === 'sendOTP' ? (
                     <div className="space-y-1">
                       <Label htmlFor="email" className="text-signininput text-base">Email Address</Label>
@@ -242,9 +237,9 @@ const SendOTPPage: React.FC = () => {
                   </div>
                   {auth.otpError && <p className="text-red-500">{auth.otpError}</p>}
                   <div className="flex items-center">
-                    <h1 className="text-signinemail text-base">Don’t have an account?</h1>
+                    <h1 className="text-signinemail text-base">Already have an account?</h1>
                     <Button asChild variant="link" className="text-blue">
-                      <Link href="/signup">Sign Up</Link>
+                      <Link href="/signin">Sign In</Link>
                     </Button>
                   </div>
                 </CardContent>

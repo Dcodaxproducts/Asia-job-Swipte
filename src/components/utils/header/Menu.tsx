@@ -1,13 +1,24 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { logout, initializeAuth } from '../../../store/slices/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../store/hook';
 
 const Menu: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(initializeAuth());
+  }, [dispatch]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,6 +28,11 @@ const Menu: React.FC = () => {
     return pathname === path
       ? "text-blue border-b-2 border-blue"
       : "text-darkGrey";
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/signin');
   };
 
   return (
@@ -59,11 +75,31 @@ const Menu: React.FC = () => {
             </Link>
           </div>
 
-          {/* Right Side (Sign-in Button) */}
+          {/* Right Side (Sign-in/Sign-out Button) */}
           <div className="hidden md:block">
-            <Button asChild>
-              <Link className="bg-blue text-white text-sm px-4 py-2 rounded-md" href="/signin">Sign In</Link>
-            </Button>
+            {user ? (
+              <>
+                <Button variant="outline" className='bg-blue text-white' onClick={() => setIsDialogOpen(true)}>Sign Out</Button>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogContent className="sm:max-w-[425px] sm:max-h-[300px] bg-white p-5">
+                    <DialogHeader>
+                      <DialogTitle>Confirm Sign Out</DialogTitle>
+                      <DialogDescription>
+                        Are you sure you want to sign out?
+                      </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+                      <Button variant="destructive" className='bg-blue text-white'  onClick={handleLogout}>Sign Out</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </>
+            ) : (
+              <Button asChild>
+                <Link className="bg-blue text-white text-sm px-4 py-2 rounded-md" href="/signin">Sign In</Link>
+              </Button>
+            )}
           </div>
         </div>
 

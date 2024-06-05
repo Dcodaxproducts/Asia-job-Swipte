@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
@@ -23,34 +22,37 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 
 const SignInPage = () => {
+  const [userType, setUserType] = useState('jobSeeker'); 
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-
-  useEffect(() => {
-    if (auth.user) {
-      router.push('/');
-    }
-  }, [auth.user, router]);
+  
+  // useEffect(() => {
+  //   if (auth.user) {
+  //     router.push('/');
+  //   }
+  // }, [auth.user, router]);
 
   const handleSignIn = async () => {
-    await dispatch(signIn({ email, password }));
+    const response = await dispatch(signIn({ email, password, userType }));
+    if (response.meta.requestStatus === 'fulfilled') {
+      router.push('/');
+    }
   };
 
   return (
-    <div className="md:flex " >
-    <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')",   }}>
-      
-    </div>
-    <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
-      <div className="w-[550px]">
-        <Tabs defaultValue="jobseeker" className="w-full">
-          <TabsList className="flex justify-center w-full mb-4">
-            <TabsTrigger value="jobseeker" className="w-1/3">Job Seeker</TabsTrigger>
-            <TabsTrigger value="employer" className="w-1/3">Employer</TabsTrigger>
-          </TabsList>
+    <div className="md:flex">
+      <div className="hidden md:flex md:w-1/2 w-full min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/signupimage.png')" }}>
+      </div>
+      <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
+        <div className="w-[550px]">
+          <Tabs defaultValue="jobseeker" className="w-full" onValueChange={setUserType}>
+            <TabsList className="flex justify-center w-full mb-4">
+              <TabsTrigger value="jobseeker" className="w-1/3">Job Seeker</TabsTrigger>
+              <TabsTrigger value="employer" className="w-1/3">Employer</TabsTrigger>
+            </TabsList>
             <TabsContent value="jobseeker">
               <Card className="border-none shadow-none">
                 <CardHeader>
@@ -66,7 +68,7 @@ const SignInPage = () => {
                     <div className="flex items-center justify-center">
                       <div className="flex-grow border-t border-gray-300"></div>
                       <Button variant="link" className="mx-4 text-signinemail">
-                      <Link href="/send-otp">Or Sign In with email</Link> 
+                        <Link href="/send-otp">Or Sign In with email</Link> 
                       </Button>
                       <div className="flex-grow border-t border-gray-300"></div>
                     </div>
@@ -118,7 +120,7 @@ const SignInPage = () => {
                   <div className="flex items-center">
                     <h1 className="text-signinemail text-base">Don’t have an account?</h1>
                     <Button asChild variant="link" className="text-blue">
-                      <Link href="/signup">Sign Up</Link>
+                      <Link href="/send-otp">Sign Up</Link>
                     </Button>
                   </div>
                 </CardContent>

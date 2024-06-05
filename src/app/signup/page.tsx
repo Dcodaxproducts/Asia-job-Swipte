@@ -12,33 +12,34 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from 'next/navigation';
 import { FcGoogle } from "react-icons/fc";
+
 const SignUpPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const auth = useSelector((state: RootState) => state.auth);
   const router = useRouter();
-  
-  const [email, setEmail] = useState('');
+
+  const [email, setEmail] = useState(auth.emailForSignUp || '');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState(auth.otpForSignUp || '');
 
-  useEffect(() => {
-    if (auth.user) {
-      router.push('/');
-    }
-  }, [auth.user, router]);
+  // useEffect(() => {
+  //   if (auth.user) {
+  //     router.push('/');
+  //   }
+  // }, [auth.user, router]);
 
-   const handleSignUp = async (role: string) => {
+  const handleSignUp = async (role: string) => {
     if (role === 'jobseeker') {
-      await dispatch(registerJobSeeker({ email, password, firstName, lastName, otp }));
-    } else if (role === 'employer') {
+      await dispatch(registerJobSeeker({ email, password, firstName, lastName, otp ,role: 'jobSeeker'}));
+    } else if (role === 'company') {
       await dispatch(registerCompanyRole({ email, password, firstName, lastName, role: 'company' }));
     }
   };
 
   return (
-    <div className="md:flex ">
+    <div className="md:flex">
       <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')" }}>
       </div>
       <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
@@ -46,7 +47,7 @@ const SignUpPage = () => {
           <Tabs defaultValue="jobseeker" className="w-full">
             <TabsList className="flex justify-center w-full mb-4">
               <TabsTrigger value="jobseeker" className="w-1/3">Job Seeker</TabsTrigger>
-              <TabsTrigger value="employer" className="w-1/3">Employer</TabsTrigger>
+              <TabsTrigger value="company" className="w-1/3">Company</TabsTrigger>
             </TabsList>
             <TabsContent value="jobseeker">
               <Card className="border-none shadow-none">
@@ -54,20 +55,20 @@ const SignUpPage = () => {
                   <CardTitle className="flex mb-5 justify-center text-darkGrey md:text-3xl">
                     Get more opportunities
                   </CardTitle>
-                  <CardDescription>
+                  {/* <CardDescription>
                     <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle  size={25} className="mr-2" /> Sign Up with Google
+                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
                     </Button>
-                  </CardDescription>
-                  <CardDescription>
+                  </CardDescription> */}
+                  {/* <CardDescription>
                     <div className="flex items-center justify-center">
                       <div className="flex-grow border-t border-gray-300"></div>
-                      <Button variant="link" className="mx-4 text-signinemail">
-                        Or Sign Up with email
+                      <Button variant="link"  className="mx-4 text-signinemail">
+                       <Link href="/send-otp"> Or Sign Up with email</Link>
                       </Button>
                       <div className="flex-grow border-t border-gray-300"></div>
                     </div>
-                  </CardDescription>
+                  </CardDescription> */}
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
@@ -147,18 +148,18 @@ const SignUpPage = () => {
                 </CardFooter>
               </Card>
             </TabsContent>
-            <TabsContent value="employer">
+            <TabsContent value="company">
               <Card className="border-none shadow-none">
                 <CardHeader>
                   <CardTitle className="flex mb-5 justify-center text-darkGrey md:text-3xl">
                     Get more opportunities
                   </CardTitle>
-                  <CardDescription>
+                  {/* <CardDescription>
                     <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle  size={25} className="mr-2" /> Sign Up with Google
+                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
                     </Button>
-                  </CardDescription>
-                  <CardDescription>
+                  </CardDescription> */}
+                  {/* <CardDescription>
                     <div className="flex items-center justifycenter">
                       <div className="flex-grow border-t border-gray-300"></div>
                       <Button variant="link" className="mx-4 text-signinemail">
@@ -166,7 +167,7 @@ const SignUpPage = () => {
                       </Button>
                       <div className="flex-grow border-t border-gray-300"></div>
                     </div>
-                  </CardDescription>
+                  </CardDescription> */}
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
@@ -216,7 +217,7 @@ const SignUpPage = () => {
                       variant="outline"
                       size={"lg"}
                       className="bg-blue w-full text-white"
-                      onClick={() => handleSignUp('employer')}
+                      onClick={() => handleSignUp('company')}
                     >
                       Continue
                     </Button>
