@@ -1,8 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
-import { signIn } from '../../store/slices/authSlice';
+import withAuthenticatedRoutes from "@/components/HOC/AuthenticatedRoutes";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,15 +9,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
-import { FaArrowLeft } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
+import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa6";
+import { FcGoogle } from "react-icons/fc";
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store';
+import { signIn } from '../../store/slices/authSlice';
 
 const SignInPage = () => {
   const [userType, setUserType] = useState('jobSeeker'); 
@@ -220,4 +221,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default withAuthenticatedRoutes(SignInPage);

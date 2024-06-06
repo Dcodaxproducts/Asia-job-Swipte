@@ -1,4 +1,3 @@
-"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -23,19 +22,6 @@ import {
 
 import { MdGridView } from "react-icons/md";
 import Image from "next/image";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-
 // Define an interface for the shape of each job object
 interface Job {
   id: number;
@@ -51,12 +37,10 @@ interface Job {
 // Specify the type of the jobs parameter using the Job interface
 const JobListings: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
   return (
-    <div className="md:w-3/4 p-4">
+    <div className="md:w-full p-4">
       <div className="flex justify-between items-center mb-2">
         <div className="">
-          <h2 className="lg:text-3xl md:text-2xl text-xl font-bold ">
-            All Jobs
-          </h2>
+          <h2 className="lg:text-3xl md:text-2xl text-xl font-bold ">All Jobs</h2>
         </div>
         <div className="flex  items-center  gap-3">
           <div>
@@ -146,36 +130,14 @@ const JobListings: React.FC<{ jobs: Job[] }> = ({ jobs }) => {
                 </div>
 
                 <div className="flex flex-col mt-2">
-                <Dialog>
-        <DialogTrigger>
-          <Button
-            className="bg-blue text-white text-sm px-8 py-2 rounded-md"
-          
-          >
-            Apply
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="bg-white ">
-          <DialogHeader className="bg-blue px-16 py-5 flex text-center ">
-            <DialogTitle className="text-white text-3xl">Your Profile Is Incomplete</DialogTitle>
-           
-          </DialogHeader>
-          <DialogDescription className="px-16 ">
-              <h1 className="modaltext text-2xl">Complete your Profile to Apply for job!</h1>
-              <p className="text-signininput4">Click on button to complete your profile.</p>
-            </DialogDescription>
-          <div className="px-16 pb-10">
-            <Button className="w-full px-24 py-6" asChild size={"custom"}>
-              <Link
-                className="bg-blue text-white text-sm  rounded-md"
-                href="/myprofile"
-              >
-                Go to My Profile
-              </Link>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+                  <Button asChild size={"custom"}>
+                    <Link
+                      className="bg-blue text-white text-sm px-4 py-2 rounded-md"
+                      href="/signin"
+                    >
+                      Apply
+                    </Link>
+                  </Button>
                   <Button asChild size={"custom"}>
                     <Link
                       className="text-red-500 text-sm px-4 py-2 rounded-md"

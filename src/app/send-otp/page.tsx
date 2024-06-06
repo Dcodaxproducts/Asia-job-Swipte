@@ -21,6 +21,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 import { signIn, useSession } from 'next-auth/react';
+import withProtectedRoutes from "@/components/HOC/AuthenticatedRoutes";
+import withAuthenticatedRoutes from "@/components/HOC/AuthenticatedRoutes";
 
 const SendOTPPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -259,4 +261,4 @@ const SendOTPPage: React.FC = () => {
   );
 };
 
-export default SendOTPPage;
+export default withAuthenticatedRoutes(SendOTPPage);

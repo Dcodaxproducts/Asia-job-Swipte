@@ -1,9 +1,11 @@
+"use client";
 import React from 'react';
 import Header from "./HeroSection"
 import CompaniesGrow from './CompaniesGrow';
 import PopulatCategory from './PopulatCategory';
 import MatchedJobs from './MatchedJobs';
 import EmpowerJob from './EmpowerJob';
+import withProtectedRoutes from '@/components/HOC/ProtectedRoutes';
 const Home = () => {
   return (
     <>
@@ -28,4 +30,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withProtectedRoutes(Home);

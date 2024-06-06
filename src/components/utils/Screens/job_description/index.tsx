@@ -1,8 +1,10 @@
+"use client";
 import React from 'react'
 import HeroSection from './HeroSection'
 import Description from './Description'
 import Discord from './Discord'
 import SimilarJobs from './SimilarJobs'
+import withProtectedRoutes from '@/components/HOC/ProtectedRoutes'
 
 const index = () => {
   return (
@@ -15,4 +17,4 @@ const index = () => {
   )
 }
 
-export default index
+export default withProtectedRoutes(index)

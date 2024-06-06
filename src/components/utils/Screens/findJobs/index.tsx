@@ -1,20 +1,19 @@
+"use client"
 import React from 'react'
 import HeroSection from './HeroSection'
 import AllJobs from './AllJobs'
+import withProtectedRoutes from '@/components/HOC/ProtectedRoutes'
 
-const index = () => {
-  return (
-    <>
+const index = () => (
+  <>
     <div className=' bg-lightPink'>
-    <HeroSection/>
+      <HeroSection/>
     </div>
 
-    <div>
+    <div className='bg-white'>
         <AllJobs/>
     </div>
-   
-    </>
-  )
-}
+  </>
+)
 
-export default index
+export default withProtectedRoutes(index)

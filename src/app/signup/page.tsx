@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../store';
 import { registerJobSeeker, registerCompanyRole } from '../../store/slices/authSlice';
 import { Button } from "@/components/ui/button";
-import { FaGoogle, FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa6";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from 'next/navigation';
-import { FcGoogle } from "react-icons/fc";
+import withAuthenticatedRoutes from "@/components/HOC/AuthenticatedRoutes";
 
 const SignUpPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,23 +24,30 @@ const SignUpPage = () => {
   const [lastName, setLastName] = useState('');
   const [otp, setOtp] = useState(auth.otpForSignUp || '');
 
-  // useEffect(() => {
-  //   if (auth.user) {
-  //     router.push('/');
-  //   }
-  // }, [auth.user, router]);
+  useEffect(() => {
+    if (auth.user) {
+      router.push('/');
+    }
+  }, [auth.user, router]);
 
   const handleSignUp = async (role: string) => {
+    let response;
     if (role === 'jobseeker') {
-      await dispatch(registerJobSeeker({ email, password, firstName, lastName, otp ,role: 'jobSeeker'}));
+      response = await dispatch(registerJobSeeker({ email, password, firstName, lastName, otp, role: 'jobSeeker' }));
     } else if (role === 'company') {
-      await dispatch(registerCompanyRole({ email, password, firstName, lastName, role: 'company' }));
+      response = await dispatch(registerCompanyRole({ email, password, firstName, lastName, role: 'company' }));
+    }
+
+    if (response && response.meta.requestStatus === 'fulfilled') {
+      router.push('/');
+    } else {
+      console.error(response?.payload || 'An error occurred during registration.');
     }
   };
 
   return (
     <div className="md:flex">
-      <div className="hidden md:flex md:w-1/2 w-full min-h-screen  bg-cover  bg-center" style={{ backgroundImage: "url('/images/signupimage.png')" }}>
+      <div className="hidden md:flex md:w-1/2 w-full min-h-screen bg-cover bg-center" style={{ backgroundImage: "url('/images/signupimage.png')" }}>
       </div>
       <div className="md:w-1/2 w-full flex items-center justify-center min-h-screen py-8">
         <div className="w-[550px]">
@@ -55,20 +62,6 @@ const SignUpPage = () => {
                   <CardTitle className="flex mb-5 justify-center text-darkGrey md:text-3xl">
                     Get more opportunities
                   </CardTitle>
-                  {/* <CardDescription>
-                    <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
-                    </Button>
-                  </CardDescription> */}
-                  {/* <CardDescription>
-                    <div className="flex items-center justify-center">
-                      <div className="flex-grow border-t border-gray-300"></div>
-                      <Button variant="link"  className="mx-4 text-signinemail">
-                       <Link href="/send-otp"> Or Sign Up with email</Link>
-                      </Button>
-                      <div className="flex-grow border-t border-gray-300"></div>
-                    </div>
-                  </CardDescription> */}
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
@@ -154,20 +147,6 @@ const SignUpPage = () => {
                   <CardTitle className="flex mb-5 justify-center text-darkGrey md:text-3xl">
                     Get more opportunities
                   </CardTitle>
-                  {/* <CardDescription>
-                    <Button className="w-full text-darkGrey" variant="outline">
-                      <FcGoogle size={25} className="mr-2" /> Sign Up with Google
-                    </Button>
-                  </CardDescription> */}
-                  {/* <CardDescription>
-                    <div className="flex items-center justifycenter">
-                      <div className="flex-grow border-t border-gray-300"></div>
-                      <Button variant="link" className="mx-4 text-signinemail">
-                        Or Sign Up with email
-                      </Button>
-                      <div className="flex-grow border-t border-gray-300"></div>
-                    </div>
-                  </CardDescription> */}
                 </CardHeader>
                 <CardContent className="space-y-5">
                   <div className="space-y-1">
@@ -254,4 +233,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default withAuthenticatedRoutes(SignUpPage);

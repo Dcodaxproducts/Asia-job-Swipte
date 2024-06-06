@@ -1,6 +1,8 @@
+"use client";
 import React from 'react'
 import HeroSection from './HeroSection'
 import MatchedJobs from './MatchedJobs'
+import withProtectedRoutes from '@/components/HOC/ProtectedRoutes'
 
 const index = () => {
   return (
@@ -17,4 +19,4 @@ const index = () => {
   )
 }
 
-export default index
+export default withProtectedRoutes(index)

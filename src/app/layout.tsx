@@ -22,9 +22,9 @@ export default function RootLayout({
       <body className={inter.className} style={{ fontFamily: "'SfUi', sans-serif" }}>
         <SessionProviderWrapper>
           <ReduxProvider>
-            <ClientWrapper>
+           
               {children}
-            </ClientWrapper>
+            
           </ReduxProvider>
         </SessionProviderWrapper>
       </body>

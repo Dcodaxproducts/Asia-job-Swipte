@@ -61,7 +61,7 @@ export const signIn = createAsyncThunk<User, { email: string; password: string; 
       url = `${API_URL}/auth/login/company-role`;
     } else if (userType === 'admin') {
       url = `${API_URL}/auth/login/admin`;
-    }
+    }  
 
     try {
       const response = await axios.post(url, { email, password });
@@ -78,12 +78,13 @@ export const signIn = createAsyncThunk<User, { email: string; password: string; 
     }
   }
 );
-
 export const registerJobSeeker = createAsyncThunk<User, { email: string; password: string; firstName: string; lastName: string; otp: string ,role: string }, { rejectValue: string }>(
   'auth/registerJobSeeker',
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${API_URL}/auth/register/job-seeker`, userData);
+      localStorage.setItem('accessToken', response.data.accessToken);
+      localStorage.setItem('refreshToken', response.data.refreshToken);
       return response.data;
     } catch (error: any) {
       if (axios.isAxiosError(error) && error.response) {
@@ -100,6 +101,8 @@ export const registerCompanyRole = createAsyncThunk<User, { email: string; passw
   async (userData, { rejectWithValue }) => {
     try {
       const response = await axios.post(`${API_URL}/auth/register/company-role`, userData);
+      localStorage.setItem('accessToken', response.data.accessToken);
+      localStorage.setItem('refreshToken', response.data.refreshToken);
       return response.data;
     } catch (error: any) {
       if (axios.isAxiosError(error) && error.response) {

@@ -1,11 +1,12 @@
 // pages/index.js
-
+"use client";
 import Tabs from "../../../repeatComponents/Tabs"
 import AppliedJobs from "./applied_jobs";
 import Profile from "./profile/Profile";
 import Message from "./messages";
 import Notification from "./notifications/components/Notification";
 import Declined from "./declined_jobs";
+import withProtectedRoutes from "@/components/HOC/ProtectedRoutes";
 
 const IndexPage = () => {
   const tabs = [
@@ -42,4 +43,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default withProtectedRoutes(IndexPage);
