@@ -6,6 +6,7 @@ import PopulatCategory from './PopulatCategory';
 import MatchedJobs from './MatchedJobs';
 import EmpowerJob from './EmpowerJob';
 import withProtectedRoutes from '@/components/HOC/ProtectedRoutes';
+import withAuthenticatedRoutes from '@/components/HOC/AuthenticatedRoutes';
 const Home = () => {
   return (
     <>
@@ -30,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default withProtectedRoutes(Home);
+export default withAuthenticatedRoutes(Home);

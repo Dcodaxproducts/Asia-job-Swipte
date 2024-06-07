@@ -48,7 +48,7 @@ const ProfileCompletion = () => {
             <h1>50%</h1>
           </div>
         </div>
-        <Progress value={50} className="md:w-[100%] w-[80%] " />
+        <Progress value={50} color='bg-greenprogress' className="md:w-[100%] w-[80%] " />
       </div>
     </div>
 

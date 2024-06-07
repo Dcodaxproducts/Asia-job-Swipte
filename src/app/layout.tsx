@@ -4,7 +4,8 @@ import './globals.css';
 import ReduxProvider from '../components/ReduxProvider';
 import ClientWrapper from '../components/ClientWrapper';
 import SessionProviderWrapper from '../components/SessionProviderWrapper';
-
+import { ThemeProvider } from "@/components/ThemeProvider";
+import AppDataProvider from "@/context";
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -22,9 +23,16 @@ export default function RootLayout({
       <body className={inter.className} style={{ fontFamily: "'SfUi', sans-serif" }}>
         <SessionProviderWrapper>
           <ReduxProvider>
-           
+          <AppDataProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
               {children}
-            
+              </ThemeProvider>
+              </AppDataProvider>
           </ReduxProvider>
         </SessionProviderWrapper>
       </body>

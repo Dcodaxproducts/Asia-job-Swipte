@@ -4,6 +4,7 @@
 
   @layer base {
     :root {
+      --signature: 214 100% 51%;
       --background: 0 0% 100%;
       --foreground: 222.2 84% 4.9%;
 
@@ -66,9 +67,15 @@
     }
   }
 
-  @layer base {
-   
-  }
+  /* @layer base {
+    * {
+      @apply border-border:  hsl(var(--border));
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  } */
+  
   
 
   @font-face {
