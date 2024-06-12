@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ApplicantProfile = () => {
+const PersonalInfo = () => {
   return (
     <div>
       <h2 className="text-lg font-semibold">Personal Info</h2>
@@ -41,4 +41,4 @@ const ApplicantProfile = () => {
   );
 };
 
-export default ApplicantProfile;
+export default PersonalInfo

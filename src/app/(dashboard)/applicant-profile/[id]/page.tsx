@@ -1,8 +1,11 @@
 import React from 'react'
+import Tabs from './components/Tabs'
 
 const page = ({ params }: { params: { id: string } }) => {
   return (
-    <div>page hrrrrrr {JSON.stringify(params)}</div>
+    <>
+    <Tabs />
+    </>
   )
 }
 
