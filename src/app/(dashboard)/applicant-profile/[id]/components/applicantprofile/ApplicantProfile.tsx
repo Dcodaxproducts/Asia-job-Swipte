@@ -1,8 +1,11 @@
 import React from 'react'
+import PersonalInfo from './components/PersonalInfo'
 
 const ApplicantProfile = () => {
   return (
-    <div>ApplicantProfile</div>
+    <>
+    <PersonalInfo />
+    </>
   )
 }
 

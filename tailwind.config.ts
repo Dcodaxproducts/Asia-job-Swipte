@@ -88,6 +88,8 @@ const config: Config = {
         yellowBg: "#EB85331A",
         discordbg: "#5865F2",
         threeicons: "#C8C8C8",
+        'custom-dark-blue': 'hsl(var(--custom-dark-blue))',
+        'custom-gray-blue': 'hsl(var(--custom-gray-blue))',
       },
       borderRadius: {
         lg: "var(--radius)",

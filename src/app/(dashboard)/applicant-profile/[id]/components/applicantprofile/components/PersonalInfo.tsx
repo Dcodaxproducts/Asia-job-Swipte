@@ -2,40 +2,95 @@ import React from 'react';
 
 const PersonalInfo = () => {
   return (
-    <div>
-      <h2 className="text-lg font-semibold">Personal Info</h2>
-      <div className="mt-2">
-        <p><strong>Full Name:</strong> Jerome Bell</p>
-        <p><strong>Gender:</strong> Male</p>
-        <p><strong>Date of Birth:</strong> March 23, 1995 (26 y.o)</p>
-        <p><strong>Language:</strong> English, French, Bahasa</p>
-        <p><strong>Address:</strong> 4517 Washington Ave. Manchester, Kentucky 39495</p>
-      </div>
-      <div className="mt-6">
-        <h2 className="text-lg font-semibold">Professional Info</h2>
-        <div className="mt-2">
-          <p className="text-gray-700">
-            I'm a product designer + filmmaker currently working remotely at Twitter from beautiful Manchester, United Kingdom. I'm passionate about designing digital products that have a positive impact on the world.
-          </p>
-          <p className="text-gray-700 mt-2">
-            For 10 years, I've specialized in interface, experience & interaction design as well as working in user research and product strategy for product agencies, big tech companies & start-ups.
-          </p>
-          <p className="text-gray-700 mt-2">
-            <strong>Current Job:</strong> Product Designer
-          </p>
-          <p className="text-gray-700 mt-1">
-            <strong>Experience in Years:</strong> 4 Years
-          </p>
-          <p className="text-gray-700 mt-1">
-            <strong>Highest Qualification Held:</strong> Bachelors in Engineering
-          </p>
-          <p className="text-gray-700 mt-1">
-            <strong>Skill set:</strong>
-            <span className="ml-2 bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">Project Management</span>
-            <span className="ml-2 bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">Copywriting</span>
-            <span className="ml-2 bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">English</span>
-          </p>
+    <div className='pb-10'>
+           <h1 className="text-custom-dark-blue text-xl">Personal Info</h1>
+   
+           {/* ? "border-b-2 border-signature text-custom-dark-blue" */}
+           {/* : "text-custom-gray-blue hover:text-signature"; */}
+
+      <div className="mt-5">
+        <div className="flex gap-4">
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Full Name</p>
+        <p className='text-custom-dark-blue md:text-sm'> Jerome Bell</p>
         </div>
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Gender</p>
+        <p className='text-custom-dark-blue md:text-sm'>Male</p>
+        </div>
+        </div>
+
+        <div className="flex mt-5 gap-4">
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Date of Birth</p>
+        <p className='text-custom-dark-blue md:text-sm'>March 23, 1995 (26 y.o)</p>
+        </div>
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Language</p>
+        <p className='text-custom-dark-blue md:text-sm'>English, French, Bahasa</p>
+        </div>
+        </div>
+       
+        <div className="flex mt-5 gap-4">
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Address</p>
+        <p className='text-custom-dark-blue md:text-sm'>4517 Washington Ave. Manchester, Kentucky 39495</p>
+        </div>
+       
+        </div>
+      <div  className='border border-secondary  my-5'></div>
+      </div>
+
+
+      <div className="mt-6">
+         <h1 className="text-custom-dark-blue text-xl">Professional Info</h1>
+
+         <div className="mt-5 ">
+        <p className='text-custom-gray-blue md:text-sm'>About Me</p>
+        <h1 className='text-custom-dark-blue md:text-sm'>  I'm a product designer + filmmaker currently working remotely 
+          at Twitter from beautiful Manchester, United Kingdom. I'm passionate about designing digital products that 
+          have a positive impact on the world.
+        </h1>
+        <br/>
+        <h1 className='text-custom-dark-blue md:text-sm'>  For 10 years, I've specialized in interface, experience & interaction design as well as working in user research and product strategy for product agencies, big tech companies & start-ups.
+        
+        </h1>
+        </div>
+
+        <div className="mt-5">
+        <div className="flex gap-4">
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Current Job</p>
+        <p className='text-custom-dark-blue md:text-sm'> Product Designer</p>
+        </div>
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Experience in Years</p>
+        <p className='text-custom-dark-blue md:text-sm'>4 Years</p>
+        </div>
+        </div>
+
+        <div className="flex mt-5 gap-4">
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Highest Qualification Held</p>
+        <p className='text-custom-dark-blue md:text-sm'>Bachelors in Engineering</p>
+        </div>
+        <div className="w-1/2 ">
+        <p className='text-custom-gray-blue md:text-sm'>Skill set</p>
+       <div className='flex flex-wrap gap-2'>
+       <span className=" bg-secondary text-signature md:text-sm    px-2 py-1 rounded-lg">Project Management</span>
+            <span className=" bg-secondary text-signature md:text-sm   px-2 py-1 rounded-lg">Copywriting</span>
+            <span className=" bg-secondary text-signature md:text-sm   px-2 py-1 rounded-lg">English</span>
+       </div>
+       
+        </div>
+        </div>
+       
+        
+     
+      </div>
+
+
+       
       </div>
     </div>
   );
